@@ -17,9 +17,11 @@ public class ServiceQuasares {
 			this.em.persist(quasares);
 			this.em.getTransaction().commit();
 			Response.ok().build();
-			return Response.status(Response.Status.CREATED).entity(quasares).build();
+			return Response.status(Response.Status.CREATED)
+					.entity(quasares).build();
 		} catch (Exception ex) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity(ex.getMessage()).build();
 		}
 
 	}
