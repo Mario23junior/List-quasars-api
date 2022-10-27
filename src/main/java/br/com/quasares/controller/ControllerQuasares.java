@@ -6,6 +6,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/v1/api/quasares/")
 public class ControllerQuasares {
@@ -14,7 +15,7 @@ public class ControllerQuasares {
 	
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
-	public Quasares save(Quasares quasares) {
+	public Response save(Quasares quasares) {
 		return service.save(quasares);
  	}
 }
