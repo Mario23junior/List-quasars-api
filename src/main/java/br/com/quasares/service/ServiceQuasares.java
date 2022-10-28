@@ -1,10 +1,14 @@
 package br.com.quasares.service;
 
+ import java.util.List;
+
+import br.com.quasares.execeptions.ExceptionsReturnObjectErro;
 import br.com.quasares.model.Quasares;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.ws.rs.core.Response;
+
 
 public class ServiceQuasares {
 
@@ -20,9 +24,20 @@ public class ServiceQuasares {
 			return Response.status(Response.Status.CREATED)
 					.entity(quasares).build();
 		} catch (Exception ex) {
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity(ex.getMessage()).build();
+			Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ex.getMessage()).build();
+ 			throw new ExceptionsReturnObjectErro("Quasar já resgistrado no banco de dado");
 		}
 
+	}
+	
+	public  List<Quasares> findAllData() {
+		try {
+			List<Quasares> list = em.createQuery("from Quasares",Quasares.class).getResultList();
+			return list;
+		}catch(Exception e) {
+			Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+ 			throw new ExceptionsReturnObjectErro("Erro ao lista informações");
+		}
+		
 	}
 }
