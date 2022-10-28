@@ -37,7 +37,15 @@ public class ServiceQuasares {
 		}catch(Exception e) {
 			Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
  			throw new ExceptionsReturnObjectErro("Erro ao lista informações");
-		}
-		
+		}	
+	}
+	
+	public Quasares findById(Long id) {
+		try{
+ 			return em.find(Quasares.class, id);
+		}catch (Exception e) {
+			Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+ 			throw new ExceptionsReturnObjectErro("Erro ao lista id :"+ id +" informações");
+ 		}
 	}
 }
